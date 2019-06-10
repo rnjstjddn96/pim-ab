@@ -35,12 +35,14 @@ public class MemberViewController implements Initializable {
 	@FXML	private PasswordField tfPW;
 	@FXML	private TextField tfName;
 	@FXML	private TextField tfContact;
+	@FXML	private TextField tfPN;
 	
 	@FXML 	private TableView<Member> tableViewMember;
 	@FXML	private TableColumn<Member, String> columnName;
 	@FXML	private TableColumn<Member, String> columnID;
 	@FXML	private TableColumn<Member, String> columnPW;
 	@FXML	private TableColumn<Member, String> columnContact;
+	@FXML	private TableColumn<Member, String> columnPN;
 	
 	// Member : model이라고도 하고 DTO, VO 라고도 함
 	// 시스템 밖에 저장된 정보를 객체들간에 사용하는 정보로 변환한 자료구조 또는 객체
@@ -63,6 +65,7 @@ public class MemberViewController implements Initializable {
 		columnID.setCellValueFactory(cvf -> cvf.getValue().uidProperty());
 		columnPW.setCellValueFactory(cvf -> cvf.getValue().upwProperty());
 		columnContact.setCellValueFactory(cvf -> cvf.getValue().contactProperty());
+		columnPN.setCellValueFactory(cvf -> cvf.getValue().PNProperty());
 		
 		tableViewMember.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> showMemberInfo(newValue));
@@ -99,6 +102,7 @@ public class MemberViewController implements Initializable {
 			tfPW.setText(member.getUpw());
 			tfName.setText(member.getUname());
 			tfContact.setText(member.getContact());
+			tfContact.setText(member.getPN());
 
 		}
 		 else {
@@ -106,6 +110,7 @@ public class MemberViewController implements Initializable {
 			 tfPW.setText("");
 		     tfName.setText("");
 		     tfContact.setText("");
+		     tfPN.setText("");
 		 }
 	}
 	
@@ -122,7 +127,7 @@ public class MemberViewController implements Initializable {
 	private void handleCreate() { // event source, listener, handler
 		if(tfID.getText().length() > 0) {
 			Member newMember = 
-					new Member(tfID.getText(), tfPW.getText(), tfName.getText(),tfContact.getText());
+					new Member(tfID.getText(), tfPW.getText(), tfName.getText(),tfContact.getText(),tfPN.getText());
 			data.add(newMember);			
 			tableViewMember.setItems(data);
 			memberService.create(newMember);
@@ -132,7 +137,7 @@ public class MemberViewController implements Initializable {
 	@FXML 
 	private void handleUpdate() {
 		Member newMember =
-				new Member(tfID.getText(), tfPW.getText(), tfName.getText(), tfContact.getText());
+				new Member(tfID.getText(), tfPW.getText(), tfName.getText(), tfContact.getText(),tfPN.getText());
 		int selectedIndex = tableViewMember.getSelectionModel().getSelectedIndex();
 		if (selectedIndex >= 0) {
 			tableViewMember.getItems().set(selectedIndex, newMember);

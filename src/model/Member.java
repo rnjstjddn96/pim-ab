@@ -11,19 +11,21 @@ public class Member { // DB의 레코드와 매핑되는 객체
 	private StringProperty upw;
 	private StringProperty uname;
 	private StringProperty contact;
+	private StringProperty PN;
 	/*
     private final IntegerProperty zipcode;
     private ObjectProperty<LocalDate> birthday;
 	*/
 	public Member() {
-		this(null, null, null, null);
+		this(null, null, null, null, null);
 	}
 	
-	public Member(String id, String pw, String name, String contact) {
+	public Member(String id, String pw, String name, String contact, String PN) {
 		this.uid = new SimpleStringProperty(id);
 		this.uname = new SimpleStringProperty(name);
 		this.upw = new SimpleStringProperty(pw);
 		this.contact = new SimpleStringProperty(contact);
+		this.PN = new SimpleStringProperty(PN);
 	}
 	
 	public String getUid() {
@@ -66,4 +68,13 @@ public class Member { // DB의 레코드와 매핑되는 객체
         return contact;
     }
     
+    public String getPN() {
+		return this.PN.get();
+	}
+	public void setPN(String PN) {
+		this.PN.set(PN);
+	}
+    public StringProperty PNProperty() {
+        return PN;
+    }
 }
