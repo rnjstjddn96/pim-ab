@@ -124,7 +124,7 @@ public class MemberViewController implements Initializable {
 	
 	
 	@FXML 
-	private void handleCreate() { // event source, listener, handler
+	private void handleCreate() { // event source, listener, handler,
 		if(tfID.getText().length() > 0) {
 			Member newMember = 
 					new Member(tfID.getText(), tfPW.getText(), tfName.getText(),tfContact.getText(),tfPN.getText());
